@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#22242a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Kettlebell HIIT interval timer">
+  <title>Kettlebell HIIT</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ───────── Start ───────── -->
+  <main id="start" class="screen screen-start" hidden>
+    <header class="start-head">
+      <div class="eyebrow" id="start-eyebrow"></div>
+      <h1 class="start-title" id="start-title"></h1>
+      <p class="start-summary" id="start-summary"></p>
+    </header>
+    <ol class="routine" id="routine"></ol>
+    <div class="start-foot">
+      <div class="setting">
+        <div>
+          <div class="setting-label">Voice cues in rest</div>
+          <div class="setting-hint" id="voice-hint"></div>
+        </div>
+        <button class="toggle" id="voice-toggle" role="switch" aria-checked="true" aria-label="Voice cues">
+          <span class="knob"></span>
+        </button>
+      </div>
+      <button class="btn btn-hero" id="start-btn">Start</button>
+    </div>
+  </main>
+
+  <!-- ───────── Workout ───────── -->
+  <main id="workout" class="screen screen-workout" hidden>
+    <div class="wk-top">
+      <span class="wk-where" id="wk-where">R1 · MIN 1</span>
+      <span class="chip" id="wk-set">Upper</span>
+      <span class="wk-elapsed" id="wk-elapsed">0:00</span>
+    </div>
+
+    <div class="wk-dial-wrap">
+      <div class="dial" id="dial">
+        <div class="dial-arc"></div>
+        <div class="dial-hole"></div>
+        <div class="dial-face">
+          <div class="countdown" id="countdown">10</div>
+          <div class="unit" id="unit">sec</div>
+        </div>
+        <div class="dial-floor"></div>
+      </div>
+    </div>
+
+    <div class="wk-main">
+      <div class="wk-name-box" id="name-box">
+        <div class="ex-name" id="ex-name">Get ready</div>
+      </div>
+      <div class="strip" id="strip"></div>
+      <div class="next">Next: <span id="next">Halo, clockwise</span></div>
+      <div class="controls">
+        <button class="btn btn-accent" id="pause-btn">Pause</button>
+        <button class="btn btn-ghost" id="stop-btn">Stop</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="paused-overlay" hidden>
+      <div class="overlay-title">Paused</div>
+      <div class="overlay-sub" id="paused-sub"></div>
+      <button class="btn btn-accent btn-wide" id="resume-btn">Resume</button>
+    </div>
+
+    <div class="overlay" id="stop-overlay" hidden>
+      <div class="overlay-title">End workout?</div>
+      <div class="overlay-sub" id="stop-sub"></div>
+      <div class="overlay-actions">
+        <button class="btn btn-accent" id="stop-yes">End</button>
+        <button class="btn btn-ghost" id="stop-no">Keep going</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ───────── Finished ───────── -->
+  <main id="finished" class="screen screen-finished" hidden>
+    <div class="eyebrow" id="fin-eyebrow"></div>
+    <div class="fin-body">
+      <div class="fin-done">Done</div>
+      <div class="fin-label">TOTAL TIME</div>
+      <div class="fin-total" id="fin-total">0:00</div>
+      <div class="fin-cards">
+        <div class="fin-card"><div class="fin-label">ROUNDS</div><div class="fin-num" id="fin-rounds">0</div></div>
+        <div class="fin-card"><div class="fin-label">WORK</div><div class="fin-num" id="fin-work">0:00</div></div>
+        <div class="fin-card"><div class="fin-label">SETS</div><div class="fin-num" id="fin-sets">0</div></div>
+      </div>
+      <div class="fin-bar" id="fin-bar"></div>
+      <div class="fin-note" id="fin-note"></div>
+    </div>
+    <div class="fin-actions">
+      <button class="btn btn-hero" id="again-btn">Go again</button>
+      <button class="btn btn-ghost btn-tall" id="done-btn">Done</button>
+    </div>
+  </main>
+
+  <div class="test-badge" id="test-badge" hidden></div>
+</body>
+</html>
