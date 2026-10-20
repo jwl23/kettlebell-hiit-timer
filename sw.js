@@ -2,7 +2,7 @@
 // the next load) with the cache as the offline fallback. Google Fonts are
 // cache-first since their URLs are versioned.
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const APP_CACHE = `kbhiit-app-${VERSION}`;
 const FONT_CACHE = 'kbhiit-fonts';
 

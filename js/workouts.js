@@ -3,7 +3,7 @@
 //
 // A workout is a reusable library of `blocks` plus a `sequence` that says
 // the order they play in. Change an exercise inside a block once and every
-// minute that uses that block picks it up (minutes 1 and 3 both use `upper`).
+// minute that uses that block picks it up (a block can appear in the sequence more than once).
 //
 // Segment fields:
 //   name     what the big screen shows            (required)
@@ -41,7 +41,6 @@ export const WORKOUTS = [
         set: 'Curls & Overheads',
         segments: [
           { name: 'Curls/overheads', say: 'curls and overheads', seconds: 40, type: 'work' },
-          { name: 'Swings', seconds: 20, type: 'work' },
           { name: 'Rest', seconds: 20, type: 'rest' },
         ],
       },
@@ -55,8 +54,8 @@ export const WORKOUTS = [
       thrusters: {
         set: 'Thrusters',
         segments: [
-          { name: 'Thrusters, left', short: 'Thrusters L', seconds: 10, type: 'work' },
-          { name: 'Thrusters, right', short: 'Thrusters R', seconds: 10, type: 'work' },
+          { name: 'Thrusters, left', short: 'Thrusters L', seconds: 20, type: 'work' },
+          { name: 'Thrusters, right', short: 'Thrusters R', seconds: 20, type: 'work' },
           { name: 'Rest', seconds: 20, type: 'rest' },
         ],
       },
@@ -66,7 +65,7 @@ export const WORKOUTS = [
       },
     },
 
-    sequence: ['upper', 'fullBody', 'upper', 'fullBody', 'longRest'],
+    sequence: ['halos', 'curls_overheads', 'swings', 'thrusters', 'longRest'],
   },
 ];
 

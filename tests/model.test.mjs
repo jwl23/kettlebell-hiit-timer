@@ -4,7 +4,26 @@ import { WORKOUTS } from '../js/workouts.js';
 import { normalizeWorkout, positionAt, summarize } from '../js/model.js';
 import { Player } from '../js/player.js';
 
-const W = normalizeWorkout(WORKOUTS[0]);
+// Every workout you define must load without errors.
+for (const w of WORKOUTS) normalizeWorkout(w);
+
+// The logic tests use a fixed copy of the original routine, so editing
+// workouts.js never breaks them.
+const upper = { set: 'Upper', segments: [
+  { name: 'Halo, clockwise', seconds: 10, type: 'work' },
+  { name: 'Halo, counterclockwise', seconds: 10, type: 'work' },
+  { name: 'Curls/overheads', seconds: 20, type: 'work' },
+  { name: 'Rest', seconds: 20, type: 'rest' }] };
+const fullBody = { set: 'Full Body', segments: [
+  { name: 'Swings', seconds: 20, type: 'work' },
+  { name: 'Thrusters, left', seconds: 10, type: 'work' },
+  { name: 'Thrusters, right', seconds: 10, type: 'work' },
+  { name: 'Rest', seconds: 20, type: 'rest' }] };
+const W = normalizeWorkout({
+  name: 'Fixture', getReadySeconds: 10, repeat: true,
+  blocks: { upper, fullBody, longRest: { set: 'Rest', segments: [{ name: 'Rest', seconds: 120, type: 'longRest' }] } },
+  sequence: ['upper', 'fullBody', 'upper', 'fullBody', 'longRest'],
+});
 const at = (t) => positionAt(W, t);
 
 assert.equal(W.roundSeconds, 360);
