@@ -2,7 +2,7 @@
 // the next load) with the cache as the offline fallback. Google Fonts are
 // cache-first since their URLs are versioned.
 
-const VERSION = 'v2';
+const VERSION = 'v3';
 const APP_CACHE = `kbhiit-app-${VERSION}`;
 const FONT_CACHE = 'kbhiit-fonts';
 
@@ -29,7 +29,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const app = await caches.open(APP_CACHE);
-      await app.addAll(APP_FILES);
+      // cache: 'reload' skips the browser's HTTP cache, which GitHub Pages
+      // fills for 10 minutes, so a new version never precaches old files.
+      await app.addAll(APP_FILES.map((u) => new Request(u, { cache: 'reload' })));
       // Best effort: pre-cache the fonts so the first offline run looks right.
       try {
         const fonts = await caches.open(FONT_CACHE);
@@ -81,7 +83,9 @@ self.addEventListener('fetch', (event) => {
     (async () => {
       const cache = await caches.open(APP_CACHE);
       try {
-        const res = await fetch(req);
+        // 'no-cache' revalidates with GitHub (cheap 304 when unchanged)
+        // instead of trusting its max-age=600, so a deploy shows on the next load.
+        const res = await fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' });
         if (res.ok) cache.put(req, res.clone());
         return res;
       } catch {
