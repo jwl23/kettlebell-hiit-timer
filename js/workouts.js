@@ -29,19 +29,32 @@ export const WORKOUTS = [
     repeat: true,
 
     blocks: {
-      upper: {
-        set: 'Upper',
+      halos: {
+        set: 'Halos',
         segments: [
-          { name: 'Halo, clockwise', short: 'Halo cw', seconds: 10, type: 'work' },
-          { name: 'Halo, counterclockwise', short: 'Halo ccw', seconds: 10, type: 'work' },
-          { name: 'Curls/overheads', say: 'curls and overheads', seconds: 20, type: 'work' },
+          { name: 'Halo, left', short: 'Halo L', seconds: 20, type: 'work' },
+          { name: 'Halo, right', short: 'Halo R', seconds: 20, type: 'work' },
           { name: 'Rest', seconds: 20, type: 'rest' },
         ],
       },
-      fullBody: {
-        set: 'Full Body',
+      curls_overheads: {
+        set: 'Curls & Overheads',
         segments: [
+          { name: 'Curls/overheads', say: 'curls and overheads', seconds: 40, type: 'work' },
           { name: 'Swings', seconds: 20, type: 'work' },
+          { name: 'Rest', seconds: 20, type: 'rest' },
+        ],
+      },
+      swings: {
+        set: 'Swings',
+        segments: [
+          { name: 'Swings', short: 'Swings', seconds: 40, type: 'work' },
+          { name: 'Rest', seconds: 20, type: 'rest' },
+        ],
+      },
+      thrusters: {
+        set: 'Thrusters',
+        segments: [
           { name: 'Thrusters, left', short: 'Thrusters L', seconds: 10, type: 'work' },
           { name: 'Thrusters, right', short: 'Thrusters R', seconds: 10, type: 'work' },
           { name: 'Rest', seconds: 20, type: 'rest' },
